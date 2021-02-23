@@ -31,13 +31,13 @@ class QuickSort {
                 return;
             }
 
-            await this.highlightItemsAsync(i, j, high);
+            await this.highlightItemsAsync(i, j);
             if (arr[j].value <= pivot) {
                 this.swap(arr, i, j);
                 i = i + 1;
             }          
         }
-        
+
         await this.highlightItemsAsync(i, high);
         this.swap(arr, i, high);
         return i;

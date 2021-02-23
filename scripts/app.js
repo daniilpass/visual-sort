@@ -10,13 +10,13 @@ class App {
         this.arrayCopy = [];
         
         this.colors = {
-            default: "#2d2de6",
-            current: "#2de66e",
-            next: "#2d91e6",
-            border: "#1212b1"
+            default: "#C8C8C8",
+            current: "#3737FF",
+            next: "#37C837",//"#40BF40", //#FF3737",
+            border: "#FFFFFF"
         }
         
-        this.highlightTimeout = 1000/40;
+        this.highlightTimeout = 1000/60;
         //this.transitionTimeout = 2000;
 
         this.cancellationToken = null;
@@ -28,7 +28,7 @@ class App {
     initArray = (size) => {
         this.array = [];
         for (let index = 0; index < size; index++) {        
-            let value = Math.ceil(Math.random() * 100) + 1;  
+            let value = Math.ceil(Math.random() * 300) + 1;  
             let item = this.createDomItem(value, this.arrayItemWidth);
             this.array[index] = {};
             this.array[index].value = value;

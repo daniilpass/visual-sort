@@ -1,36 +1,48 @@
 :root{
-    --background: #121212;
-    --background-toolbar: #212121;
-    --background-container: #323232;
+    --background: #212121;
+    --background-toolbar: #424242;
+    --background-content: #323232;
+    --item-background: #C8C8C8;
 }
 
 body {
     margin: 0;
     background: var(--background);
-}
-
-#toolbar{
     width: 100%;
-    padding: 24px;
-    background: var(--background-toolbar);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
 }
 
 #content{
-    padding: 48px;
+    width: 764px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
+    -webkit-box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
+    background: var(--background-content);
+}
+
+#toolbar{
+    padding: 24px;
+    background: var(--background-toolbar);
+    box-shadow: 0 0px 10px 0px rgb(0 0 0);
+    -webkit-box-shadow: 0 0px 10px 0px rgb(0 0 0);
 }
 
 #array-container{
     width: 100%;
     height: 350px;
-    background: var(--background-container);
     position: relative;
+    margin: 0 12px;
 }
 
 
 .array-item{
     width: 10px;
-    background: blue;
+    background: var(--item-background);
     position: absolute;
     bottom: 0;
-    /* transition: left 2000ms; */
 }
