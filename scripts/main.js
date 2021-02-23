@@ -1,5 +1,7 @@
 window.onload = () => {
-    this.App = new App();
+    let containerNode = document.getElementById("array-container");
+    this.App = new App(containerNode);
+    this.App.randomize();
 };
 
 async function handleBubbleSortClick() {

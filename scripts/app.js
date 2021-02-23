@@ -1,7 +1,6 @@
 class App {
-    constructor() {
-        this.containerNodeDomId = "array-container";
-        this.containerNode;
+    constructor(containerNode) {
+        this.containerNode = containerNode;
 
         this.arrayItemWidth = 10;
         this.arrayItemPadding = 5;
@@ -19,19 +18,6 @@ class App {
         
         this.highlightTimeout = 1000/40;
         //this.transitionTimeout = 2000;
-
-        this.initApp();
-    }
-
-    //
-    // Init
-    //
-    initApp = () => {
-        // get array conteiner
-        this.containerNode = document.getElementById(this.containerNodeDomId);
-
-        // initial random and draw
-        this.randomize();
     }
     
     //
