@@ -1,0 +1,36 @@
+:root{
+    --background: #121212;
+    --background-toolbar: #212121;
+    --background-container: #323232;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+}
+
+#toolbar{
+    width: 100%;
+    padding: 24px;
+    background: var(--background-toolbar);
+}
+
+#content{
+    padding: 48px;
+}
+
+#array-container{
+    width: 100%;
+    height: 350px;
+    background: var(--background-container);
+    position: relative;
+}
+
+
+.array-item{
+    width: 10px;
+    background: blue;
+    position: absolute;
+    bottom: 0;
+    /* transition: left 2000ms; */
+}
