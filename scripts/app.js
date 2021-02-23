@@ -11,8 +11,8 @@ class App {
         
         this.colors = {
             default: "#C8C8C8",
-            current: "#3737FF",
-            next: "#37C837",//"#40BF40", //#FF3737",
+            current: "#3737FF", //blue
+            next: "#37C837",//green
             border: "#FFFFFF"
         }
         
@@ -94,13 +94,13 @@ class App {
     
     async highlightArrayItemsAsync(i1, i2, i3) {
         this.setItemColor(i1, this.colors.current);
-        this.setItemColor(i2, this.colors.next);
+        i2 && this.setItemColor(i2, this.colors.next);
         i3 && this.setItemColor(i3, this.colors.border);
     
         await new Promise(r => setTimeout(r, this.highlightTimeout));
     
         this.setItemColor(i1, this.colors.default);
-        this.setItemColor(i2, this.colors.default);
+        i2 && this.setItemColor(i2, this.colors.default);
         i3 && this.setItemColor(i3, this.colors.default);
     }
     
@@ -168,6 +168,15 @@ class App {
         await this.executeAndMeasureAyncAction(async () => {
             this.cancellationToken = new CancellationToken();
             await new QuickSort(this.highlightArrayItemsAsync.bind(this), this.setArrayItemsOpacity, this.redrawArrayItems, this.cancellationToken).sort(this.array, 0, this.array.length - 1);
+        })
+
+        !this.cancellationToken.isCancelled && this.checkResult(this.array);
+    }
+
+    async insertionSort() {
+        await this.executeAndMeasureAyncAction(async () => {
+            this.cancellationToken = new CancellationToken();
+            await new InsertionSort(this.highlightArrayItemsAsync.bind(this), this.redrawArrayItems, this.cancellationToken).sort(this.array);
         })
 
         !this.cancellationToken.isCancelled && this.checkResult(this.array);

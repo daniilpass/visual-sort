@@ -7,6 +7,7 @@ let btnUndoSorting;
 let btnBubbleSort;
 let btnQuickSort;
 let btnStop;
+let btnInsertionSort;
 
 //Entry point
 window.onload = () => {
@@ -15,6 +16,7 @@ window.onload = () => {
     btnUndoSorting = document.getElementById("btnUndoSorting");
     btnBubbleSort = document.getElementById("btnBubbleSort");
     btnQuickSort = document.getElementById("btnQuickSort");
+    btnInsertionSort = document.getElementById("btnInsertionSort");
     btnStop = document.getElementById("btnStop");
 
     // Init app
@@ -27,18 +29,6 @@ window.onload = () => {
 //
 //UI events
 //
-async function handleBubbleSortClick() {
-    sortingStarts();
-    await app.bubbleSort();
-    sortingEnds();
-}
-
-async function handleQuickSortClick() {
-    sortingStarts();
-    await app.quickSort();
-    sortingEnds();
-}
-
 function handleRandomizeClick() {
     app.randomize();
 }
@@ -51,6 +41,25 @@ function handleStopClick() {
     app.stopSorting();
 }
 
+async function handleBubbleSortClick() {
+    sortingStarts();
+    await app.bubbleSort();
+    sortingEnds();
+}
+
+async function handleQuickSortClick() {
+    sortingStarts();
+    await app.quickSort();
+    sortingEnds();
+}
+
+
+async function  handleInsertionSortClick() {
+    sortingStarts();
+    await app.insertionSort();
+    sortingEnds();
+}
+
 //
 //UI logic
 //
@@ -59,6 +68,7 @@ sortingStarts = () => {
     btnUndoSorting.disabled = true;
     btnBubbleSort.disabled = true;
     btnQuickSort.disabled = true;
+    btnInsertionSort.disabled = true;
     btnStop.disabled = false;
 }
 
@@ -67,5 +77,6 @@ sortingEnds = () => {
     btnUndoSorting.disabled = false;
     btnBubbleSort.disabled = false;
     btnQuickSort.disabled = false;
+    btnInsertionSort.disabled = false;
     btnStop.disabled = true;
 }
