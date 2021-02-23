@@ -19,3 +19,7 @@ function handleRandomizeClick() {
 function handleUndoSortingClick() {
     this.App.undoSorting();
 }
+
+function handleStopClick() {
+    this.App.stopSorting();
+}

@@ -1,11 +1,17 @@
 class QuickSort {
-    constructor (highlightItemsAsync, setOpacity, redraw) {
+    constructor (highlightItemsAsync, setOpacity, redraw, cancellationToken) {
         this.highlightItemsAsync = highlightItemsAsync;
         this.redraw = redraw;
         this.setOpacity = setOpacity;
+        this.cancellationToken = cancellationToken;
     }
 
     async sort(arr, low, high) {
+        //Check cancellation
+        if (this.cancellationToken.isCancelled) {
+            return;
+        }
+
         if (low < high) {
             let p = await this.partition(arr, low, high);
             await this.sort(arr, low, p - 1);
@@ -20,6 +26,11 @@ class QuickSort {
         let i = low;
 
         for (let j = low; j <= high - 1; j++) {
+            //Check cancellation
+            if (this.cancellationToken.isCancelled) {
+                return;
+            }
+
             await this.highlightItemsAsync(i, j, high);
             if (arr[j].value <= pivot) {
                 this.swap(arr, i, j);

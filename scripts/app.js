@@ -18,6 +18,8 @@ class App {
         
         this.highlightTimeout = 1000/40;
         //this.transitionTimeout = 2000;
+
+        this.cancellationToken = null;
     }
     
     //
@@ -138,6 +140,10 @@ class App {
         this.drawArrayItems();
     }
 
+    stopSorting = () => {
+        this.cancellationToken && this.cancellationToken.cancel();
+    };
+
     async executeAndMeasureAyncAction (acyncAction) {
         let t0 = performance.now();
         await acyncAction();
@@ -151,17 +157,19 @@ class App {
 
     async bubbleSort() {
         await this.executeAndMeasureAyncAction(async () => {
-            await new BubbleSort(this.highlightArrayItemsAsync.bind(this), this.redrawArrayItems).sort(this.array);
+            this.cancellationToken = new CancellationToken();
+            await new BubbleSort(this.highlightArrayItemsAsync.bind(this), this.redrawArrayItems, this.cancellationToken).sort(this.array);            
         })
         
-        this.checkResult(this.array);
+        !this.cancellationToken.isCancelled && this.checkResult(this.array);
     }
 
     async quickSort() {
         await this.executeAndMeasureAyncAction(async () => {
-            await new QuickSort(this.highlightArrayItemsAsync.bind(this), this.setArrayItemsOpacity, this.redrawArrayItems).sort(this.array, 0, this.array.length - 1);
+            this.cancellationToken = new CancellationToken();
+            await new QuickSort(this.highlightArrayItemsAsync.bind(this), this.setArrayItemsOpacity, this.redrawArrayItems, this.cancellationToken).sort(this.array, 0, this.array.length - 1);
         })
 
-        this.checkResult(this.array);
+        !this.cancellationToken.isCancelled && this.checkResult(this.array);
     }
 }
